@@ -11,7 +11,7 @@ export default class AuthController {
   public async login({ request, auth, response }: HttpContextContract): Promise<void> {
     const { uid, password } = await request.validate({ schema: LoginSchema })
 
-    const lowerCaseUid = uid.toLowerCase()
+    const lowerCaseUid = uid
     try {
       const token = await auth
         .use('api')

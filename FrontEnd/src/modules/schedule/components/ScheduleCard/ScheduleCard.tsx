@@ -1,5 +1,9 @@
 import { Box, Flex, Icon, Image, Text, Tooltip } from '@chakra-ui/react';
 import { IoLocationOutline } from 'react-icons/all';
+
+import { useHandleSchedule } from 'modules/schedule/handlers/schedule.handlers';
+
+import { type ScheduleCardProps } from './schedulecard.interfaces';
 import {
   Container,
   LeftFlexContainer,
@@ -7,8 +11,6 @@ import {
   RightFlexContainer,
   TitleContainer,
 } from './scheduleCard.styled';
-import { ScheduleCardProps } from './schedulecard.interfaces';
-import { useHandleSchedule } from 'modules/schedule/handlers/schedule.handlers';
 
 export const ScheduleCard = ({
   data: { day, startTime, endTime, tags, place, title, users },
@@ -46,19 +48,17 @@ export const ScheduleCard = ({
           </LocationContainer>
 
           <Flex gap="16px">
-            {users
-              .slice(0, 4)
-              .map(user => (
-                <Image
-                  src={user.source_image}
-                  objectFit="cover"
-                  alt={user.first_name}
-                  borderRadius="full"
-                  boxSize="44px"
-                  title={user.first_name}
-                  key={user.id}
-                />
-              ))}
+            {users.slice(0, 4).map(user => (
+              <Image
+                src={user.source_image}
+                objectFit="cover"
+                alt={user.first_name}
+                borderRadius="full"
+                boxSize="44px"
+                title={user.first_name}
+                key={user.id}
+              />
+            ))}
             {users.length > 4 && (
               <Tooltip label={concatScheduleUserNames(users)} fontSize="md">
                 <Image
